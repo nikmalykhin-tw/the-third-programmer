@@ -27,6 +27,11 @@
   - Green: Write minimal code to make it pass
   - Refactor: Clean up only if needed, keeping tests green
 
+**Version Control Rules:**
+
+- **Never commit automatically:** Only commit when explicitly asked by the human partners
+- **Wait for commit commands:** Do not suggest or perform commits unless directly requested
+
 ## Repository Structure & Patterns
 
 - **Kata-Based Organization:** Each programming exercise lives in its own directory (`kata-name/`)
