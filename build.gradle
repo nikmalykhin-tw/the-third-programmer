@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+// Root project configuration
+allprojects {
+    group = 'com.thoughtworks.thethirdprogrammer'
+    version = '1.0.0'
+    
+    repositories {
+        mavenCentral()
+    }
+}
+
+// Configuration for all Java subprojects (katas)
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+    
+    dependencies {
+        // JUnit 5
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+        
+        // AssertJ for fluent assertions (optional but helpful for katas)
+        testImplementation 'org.assertj:assertj-core:3.24.2'
+    }
+    
+    test {
+        useJUnitPlatform()
+        
+        testLogging {
+            events "passed", "skipped", "failed"
+            exceptionFormat "full"
+        }
+    }
+    
+    compileJava {
+        options.encoding = 'UTF-8'
+        options.compilerArgs += ['-Xlint:unchecked', '-Xlint:deprecation']
+    }
+    
+    compileTestJava {
+        options.encoding = 'UTF-8'
+    }
+}
