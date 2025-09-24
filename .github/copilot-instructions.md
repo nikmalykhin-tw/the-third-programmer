@@ -10,6 +10,23 @@
 - **Editor:** VS Code with GitHub Copilot
 - **Methodology:** Trio programming using Code Katas from [CodeKata.com](http://codekata.com/)
 
+## Trio Programming Protocol
+
+**BEFORE any code implementation or changes:**
+
+1. **Ask for permission** - Present your short plan and get approval
+2. **Show your approach** - Explain what you intend to implement in 2-3 sentences
+3. **Wait for confirmation** - Don't proceed until the human partners agree
+
+**Code Implementation Rules:**
+
+- **Small increments:** Add no more than 20-30 lines of code per change
+- **Tiny steps:** Make the smallest possible change that moves toward the goal
+- **TDD cycle:** Always follow Red → Green → (Optional) Refactor
+  - Red: Write a failing test first
+  - Green: Write minimal code to make it pass
+  - Refactor: Clean up only if needed, keeping tests green
+
 ## Repository Structure & Patterns
 
 - **Kata-Based Organization:** Each programming exercise lives in its own directory (`kata-name/`)
@@ -45,6 +62,7 @@
 ## Current Status
 
 Repository is in early experimental phase. When working on katas:
+
 1. Create new kata directory following naming convention
 2. Set up standard Java/Gradle structure in `src/`
 3. Document the trio programming experience in kata README.md
