@@ -14,9 +14,9 @@
 
 **BEFORE any code implementation or changes:**
 
-1. **Ask for permission** - Present your short plan and get approval
-2. **Show your approach** - Explain what you intend to implement in 2-3 sentences
-3. **Wait for confirmation** - Don't proceed until the human partners agree
+1. **Ask for permission** – Present your short plan and get approval
+2. **Show your approach** – Explain what you intend to implement in 2-3 sentences
+3. **Wait for confirmation** – Don't proceed until the human partners agree
 
 **Code Implementation Rules:**
 
@@ -31,6 +31,23 @@
 
 - **Never commit automatically:** Only commit when explicitly asked by the human partners
 - **Wait for commit commands:** Do not suggest or perform commits unless directly requested
+- **Amend protocol:** If asked to add files to the last commit, use `git add <files>` and `git commit --amend --no-edit` to keep history clean.
+
+---
+
+## Spring Boot & Framework Katas
+
+When using Spring Boot or similar frameworks in a kata:
+
+- **Minimal setup:** Only add the minimum required dependencies (e.g., `spring-boot-starter-web`, `spring-boot-starter-test`) in the kata's `build.gradle` or the `subprojects` block of the root build.
+- **Application class:** Always include a minimal `@SpringBootApplication` class (e.g., `HelloWorldApplication`) in the main package to satisfy Spring context requirements for tests.
+- **Test placement:** Place all Spring Boot tests in the same package (or a subpackage) as the application class to ensure component scanning works.
+- **Test context:** Use `@WebMvcTest` for controller tests, and ensure the controller and test are in the correct package.
+- **Dependency troubleshooting:** If you see errors about missing Spring/JUnit classes, check that dependencies are in the correct `build.gradle` and use the `${springBootVersion}` property if defined.
+- **Classpath troubleshooting:** Test files must be in `src/test/java`, not `src/main/java`, to access test dependencies.
+- **Package troubleshooting:** If you see `Unable to find a @SpringBootConfiguration`, move your test to the same package as your application class.
+
+---
 
 ## Repository Structure & Patterns
 
@@ -48,6 +65,18 @@
   - AI collaboration patterns discovered
   - Code quality reflections
   - Lessons learned about trio programming dynamics
+
+---
+
+## Troubleshooting & Best Practices
+
+- **Missing dependencies:** Ensure all required dependencies are present in the correct `build.gradle` (root or kata-specific). Use version properties for consistency.
+- **Test context errors:** Always provide a minimal `@SpringBootApplication` class and keep test files in the correct package and source set.
+- **Classpath issues:** Place test files in `src/test/java`, not `src/main/java`.
+- **Spring context errors:** If you see `Unable to find a @SpringBootConfiguration`, check your package structure and test location.
+- **Commit protocol:** Only commit or amend when explicitly instructed. Use amend for adding files to the last commit.
+
+---
 
 ## Code Quality Standards
 
