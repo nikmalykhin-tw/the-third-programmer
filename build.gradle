@@ -1,8 +1,12 @@
 plugins {
     id 'java'
-    id 'java-library'
 }
 
+ext {
+    springBootVersion = '3.3.0'
+}
+
+// No direct dependencies in root; all are handled in subprojects
 // Root project configuration
 allprojects {
     group = 'com.thoughtworks.thethirdprogrammer'
@@ -28,9 +32,13 @@ subprojects {
         // JUnit 5
         testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-        
+
         // AssertJ for fluent assertions (optional but helpful for katas)
         testImplementation 'org.assertj:assertj-core:3.24.2'
+
+        // Spring Boot dependencies for all katas (with version)
+        implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+        testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
     }
     
     test {
