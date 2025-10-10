@@ -27,11 +27,32 @@
   - Green: Write minimal code to make it pass
   - Refactor: Clean up only if needed, keeping tests green
 
+**Refactoring Protocol:**
+
+- Only refactor after all tests pass and with explicit approval.
+- Refactoring must not change test behavior or break existing tests.
+- All refactoring steps must be explained and approved before implementation.
+
+**Design Patterns & Encapsulation:**
+
+- Prefer using design patterns (e.g., Composite) for hierarchical or tree-like data, but justify and get approval before introducing them.
+- For dynamic JSON keys, use a `Map` or a class that serializes as a `Map` (e.g., with `@JsonValue`), even with frameworks like Spring Boot.
+- Encapsulate collections (like `Map`) in domain objects to improve type safety and maintainability.
+
+**Test Change Restrictions:**
+
+- Do not change existing tests unless explicitly requested. New requirements must be covered by new tests.
+
 **Version Control Rules:**
 
-- **Never commit automatically:** Only commit when explicitly asked by the human partners
-- **Wait for commit commands:** Do not suggest or perform commits unless directly requested
-- **Amend protocol:** If asked to add files to the last commit, use `git add <files>` and `git commit --amend --no-edit` to keep history clean.
+- Never commit automatically: Only commit when explicitly asked by the human partners.
+- Wait for commit commands: Do not suggest or perform commits unless directly requested.
+- Use Conventional Commits for all commit messages, including a summary of what changed and why in the commit body.
+- After each development cycle, summarize what was learned and propose rule improvements.
+
+**Session Retrospective:**
+
+- After each development cycle, summarize the process, what was learned, and propose improvements to these instructions.
 
 ---
 
