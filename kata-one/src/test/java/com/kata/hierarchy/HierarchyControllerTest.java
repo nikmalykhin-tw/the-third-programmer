@@ -46,4 +46,24 @@ class HierarchyControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("{\"Nick\": {\"Pete\": {}}}"));
     }
+
+    @Test
+    @DisplayName("POST /hierarchy with {\"Pete\": \"Nick\", \"Barbara\": \"Nick\"} returns {\"Nick\": {\"Pete\": {}, \"Barbara\": {}}}")
+    void postPeteAndBarbaraNickReturnsNickWithChildren() throws Exception {
+        mockMvc.perform(post("/hierarchy")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"Pete\": \"Nick\", \"Barbara\": \"Nick\"}"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"Nick\": {\"Pete\": {}, \"Barbara\": {}}}"));
+    }
+
+    @Test
+    @DisplayName("POST /hierarchy with full chain returns nested hierarchy JSON")
+    void postFullChainReturnsNestedHierarchy() throws Exception {
+        mockMvc.perform(post("/hierarchy")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"Pete\": \"Nick\", \"Barbara\": \"Nick\", \"Nick\": \"Sophie\", \"Sophie\": \"Jonas\"}"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"Jonas\": {\"Sophie\": {\"Nick\": {\"Pete\": {}, \"Barbara\": {}}}}}"));
+    }
 }
