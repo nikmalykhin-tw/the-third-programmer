@@ -26,4 +26,24 @@ class HierarchyControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("{}"));
     }
+
+    @Test
+    @DisplayName("POST /hierarchy with {\"Pete\": null} returns {\"Pete\": {}}")
+    void postPeteNullReturnsPeteEmptyObject() throws Exception {
+        mockMvc.perform(post("/hierarchy")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"Pete\": null}"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"Pete\":{}}"));
+    }
+
+    @Test
+    @DisplayName("POST /hierarchy with {\"Pete\": \"Nick\"} returns {\"Nick\": {\"Pete\": {}}}")
+    void postPeteNickReturnsNickPeteHierarchy() throws Exception {
+        mockMvc.perform(post("/hierarchy")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"Pete\": \"Nick\"}"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"Nick\": {\"Pete\": {}}}"));
+    }
 }
