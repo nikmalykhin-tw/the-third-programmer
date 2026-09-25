@@ -21,6 +21,12 @@ public class HierarchyController {
         return ResponseEntity.ok(result);
     }
 
+    @PostMapping("/hierarchy-3")
+    public ResponseEntity<Map<String, HierarchyNode>> postHierarchy3(@RequestBody Map<String, Object> body) {
+        Map<String, HierarchyNode> result = buildHierarchy(body);
+        return ResponseEntity.ok(result);
+    }
+
     private Map<String, HierarchyNode> buildHierarchy(Map<String, Object> input) {
         if (input == null || input.isEmpty()) {
             return Map.of();
